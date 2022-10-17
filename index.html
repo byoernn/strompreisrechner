@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Strompreisrechner</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body class="p-3">
+    <h1>Strompreisrechner</h1>
+    <form>
+      <div class="mb-3">
+        <label for="grundpreis" class="form-label">Grundpreis in € pro monat</label>
+        <input
+          type="number"
+          class="form-control"
+          id="grundpreis"
+          placeholder="7,44"
+          step=".01"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="arbeitspreis" class="form-label">Arbeitspreis in € cents pro kwh</label>
+        <input
+          type="number"
+          class="form-control"
+          id="arbeitspreis"
+          placeholder="31.61"
+          step=".01"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="verbrauch" class="form-label">Verbrauch in kwh pro Jahr</label>
+        <input
+          type="number"
+          class="form-control"
+          id="verbrauch"
+          placeholder="6000"
+          step="1"
+        />
+      </div>
+      <button type="button" class="btn btn-primary" onclick="berechnen()">Berechnen</button>
+    </form>
+    <div class="mb-3">
+        <b>Monatliche kosten: </b><span id="ergebnis"></span><span> €</span>
+    </div>
+    <script>
+        function berechnen(){
+            let grundpreis = Number(document.querySelector("#grundpreis").value);
+            let arbeitspreis = Number(document.querySelector("#arbeitspreis").value);
+            let verbrauch = Number(document.querySelector("#verbrauch").value);
+            let ergebnis = document.querySelector("#ergebnis");
+
+            let result = grundpreis + (((arbeitspreis*verbrauch)/12)/100);
+            ergebnis.textContent = result;
+        }
+    </script>
+  </body>
+</html>
